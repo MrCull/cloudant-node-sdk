@@ -5,3 +5,5 @@
 #    --out ./service-name/v1.ts --target "ES5"
 
 # List the commands for each service here:
+./node_modules/.bin/typedoc --mode file --theme default --excludeExternals \
+    --out apidocs auth cloudant --target "ES5" --includeVersion
