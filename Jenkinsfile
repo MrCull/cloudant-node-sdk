@@ -58,6 +58,7 @@ pipeline {
       steps {
         bumpVersion(true)
         publishStaging()
+        publishDocs()
       }
     }
     stage('Run Gauge tests') {
@@ -214,5 +215,10 @@ void publishNpm() {
   // Note trailing slash is important for matching .npmrc entries
   // npm-cli-login always adds a trailing slash, so we don't use one in the NPM_REGISTRY var
   sh "npm publish dist --registry ${env.NPM_REGISTRY}/"
+}
+
+void publishDocs() {
+  sh "./scripts/typedoc/generate_typedoc.sh"
+  sh "./scripts/typedoc/publish-doc.sh"
 }
 
